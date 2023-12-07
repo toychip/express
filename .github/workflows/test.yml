@@ -18,7 +18,7 @@ jobs:
         run: 
           sudo apt-get update
           sudo apt-get install -y redis-server
-          redis-server --daemonized yes --requirepass test_env --port 6380
+          redis-server --daemonize yes --requirepass test_env --port 6380
       - name: Run test
         run: npm run test
 
