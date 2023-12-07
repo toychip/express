@@ -15,7 +15,7 @@ jobs:
       - name: Install npm packages
         run: npm ci
       - name: install and run redis-server
-        run: 
+        run: |
           sudo apt-get update
           sudo apt-get install -y redis-server
           redis-server --daemonize yes --requirepass test_env --port 6380
