@@ -11,7 +11,7 @@ export const createApp =  (client: RedisClient) => {
     app.use(express.json());
 
     app.get("/", (request, response) => {
-        response.status(200).send("hello from express, deployed on AWS Ligihtsail");
+        response.status(200).send("hello from express, deployed on AWS Ligihtsail and change branch");
     });
 
     app.post("/messages", async(request, response) => {
