@@ -25,40 +25,14 @@ jobs:
                 node --version
                 npx tsc --version
 
-#            - name: SSH and deploy
-#              run: |
-#                set -x
-#                ssh ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_PUBLIC_IP}} "
-#                    cd express
-#                    git pull || exit 1
-#                    npm install || exit 1
-#                    npm run build || echo "Build failed"
-#                    cat npm-build.log
-#                    sudo pkill node || exit 1
-#                    sudo npm start & npx wait-on http://localhost || exit 1
-#                    exit
-#                "
-            # - name: SSH and deploy
-            #   run: |
-            #     set -x
-            #     ssh ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_PUBLIC_IP}} "
-            #         cd express
-            #         git pull || exit 1
-            #         npm install || exit 1
-            #         npm run build > npm-build.log 2>&1 || (cat npm-build.log && exit 1)
-            #         sudo pkill node || exit 1
-            #         sudo npm start & npx wait-on http://localhost || exit 1
-            #         exit
-            #     "
             - name: SSH and deploy
               run: |
-                set -x
                 ssh ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_PUBLIC_IP}} "
-                    set -e
-                    cd express
-                    git pull
-                    npm install
-                    npm run build || (cat npm-build.log && exit 1)
-                    sudo pkill node
+                    cd express || exit 1
+                    git pull || exit 1
+                    npm install || exit 1
+                    npm run build || exit 1
+                    sudo pkill node || exit 1
                     sudo npm start & npx wait-on http://localhost
+                    exit
                 "
