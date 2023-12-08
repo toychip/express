@@ -20,8 +20,14 @@ jobs:
                 echo "${{ secrets.SSH_KNOWN_HOSTS}}" >> ~/.ssh/known_hosts
                 chmod 644 ~/.ssh/known_hosts
 
+            - name: Check Node.js and TypeScript version
+              run: |
+                node --version
+                npx tsc --version
+
             - name: SSH and deploy
               run: |
+                set -x
                 ssh ${{ secrets.SSH_USERNAME}}@${{ secrets.SSH_PUBLIC_IP}} "
                     cd express
                     git pull || exit 1
