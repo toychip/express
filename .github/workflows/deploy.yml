@@ -26,7 +26,9 @@ jobs:
                     cd express
                     git pull || exit 1
                     npm install || exit 1
-                    npm run build || exit 1
+                    npm run build > npm-build.log 2>&1 || exit 1
+                    cat npm-build.log
                     sudo pkill node || exit 1
-                    sudo npm start & npx wait-on http:localhost || exit 1
+                    sudo npm start & npx wait-on http://localhost || exit 1
+
                 "
