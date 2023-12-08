@@ -33,6 +33,6 @@ jobs:
                   npm install || exit 3
                   npm run build || exit 4
                   sudo pkill node || exit 5
-                  sudo npm start & npx wait-on http://localhost
+                  sudo npm start & npx wait-on http://localhost -t 30000
                   exit
                 "
