@@ -32,8 +32,6 @@ jobs:
                   git pull || exit 2
                   npm install || exit 3
                   npm run build || exit 4
-                  sudo pkill node || exit 5
-                  nohup sudo npm start > /dev/null 2>&1 &
-                  npx wait-on http://localhost -t 30000
+                  sudo pm2 reload
                   exit
                 "
