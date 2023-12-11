@@ -1,0 +1,5 @@
+.env
+.github
+build
+.gitinore
+node_modules
