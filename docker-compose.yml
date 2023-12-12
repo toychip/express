@@ -6,15 +6,15 @@ services:
       context: .
       dockerfile: Dockerfile.dev
     volumes:
-      - ./app:/src/my-app/app
+      - ./app:/usr/src/my-app/app
     ports: 
       - "4000:4000"
     # env_file:
       # - .env
-    enviorment: 
-      REDIS_URL: redis://cache_server:6379
+    environment: 
+      REDIS_URL: redis://redis:6379
       PORT: 4000
     depends_on:
       - redis
-  cache_server:
+  redis:
     image: "redis:alpine"
