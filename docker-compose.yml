@@ -1,0 +1,20 @@
+version: "3"
+
+services: 
+  web:
+    build: 
+      context: .
+      dockerfile: Dockerfile.dev
+    volumes:
+      - ./app:/src/my-app/app
+    ports: 
+      - "4000:4000"
+    # env_file:
+      # - .env
+    enviorment: 
+      REDIS_URL: redis://cache_server:6379
+      PORT: 4000
+    depends_on:
+      - redis
+  cache_server:
+    image: "redis:alpine"
